@@ -31,10 +31,10 @@ def SoCDemo(soc_cls, **kwargs):
             "csr":          0xe0000000,
             "ethmac":       0xe8000000,
         }
-        
-        def __init__(self, **kwargs):
 
-            soc_cls.__init__(self, 
+        def __init__(self, **kwargs):
+            soc_cls.mem_map.update(self.mem_map_zephyr)
+            soc_cls.__init__(self,
                              cpu_type="coreblocks",
                              cpu_variant="standard",
 
@@ -44,14 +44,10 @@ def SoCDemo(soc_cls, **kwargs):
                              **kwargs,
             )
             soc_cls.mem_map.update(self.mem_map_zephyr)
-            print (soc_cls.csr_map)
-            print (soc_cls.interrupt_map)
-            print (soc_cls.mem_map)
 
-      
         def add_switches(self):
             switches = self.platform.request_all("user_sw")
-            self.switches = GPIOIn(Cat(switches, self.platform.request_all("key")), with_irq=True)
+            self.switches = GPIOIn(switches, with_irq=True)
             # IRQ registered in interrupt_map
 
         def add_leds(self):

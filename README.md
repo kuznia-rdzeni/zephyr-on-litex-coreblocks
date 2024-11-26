@@ -3,7 +3,7 @@ Zephyr on LiteX Coreblocks
 
 Zephyr on LiteX Coreblocks is a reference LiteX SoC builder for the `litex_coreblocks` platform in Zephyr.
 
-Currently it supports only Terasic DE2-115 development board.
+Currently it supports Digilent Arty A7 and Terasic DE2-115 development board.
 
 Zephyr patched with Coreblocks support is located [here](https://github.com/kuznia-rdzeni/zephyr)
 
@@ -46,6 +46,7 @@ litex_term /dev/ttyUSBX --speed 115200 --kernel zephyr.bin
 -----
 | Option | Help |
 |---|---|
+| --board | select target board |
 | --build | build bitstream |
 | --load | load bitstream |
 | --doc | generate SoC documentation | 
@@ -83,3 +84,8 @@ LiteX will use new sources automatically on next build.
 It is recommended to change one of existing configurations, otherwise patching `litex.soc.cores.cpu` is also need to recognize new variant.
 
 You may want to update `pythondata-cpu-coreblocks` to latest commit of `coreblocks` as well :)
+
+Notes
+-----
+
+* Ethernet support is currently broken on Zephyr. This is possibly a Zephyr driver bug, needs further investigation.

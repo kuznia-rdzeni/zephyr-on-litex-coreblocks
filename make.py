@@ -12,7 +12,7 @@ class Board:
                 "with_ethernet": True,
                 "l2_size": 128,
                 "integrated_rom_size": 0xA000,
-                "with_led_chaser": False,
+                "with_led_chaser": False
         }
 
     def load(self, soc, filename):
@@ -38,6 +38,16 @@ class TerasicDe2115Board(Board):
             "sys_clk_freq": 50e6,
         })
 
+class TerasicDe10LiteBoard(Board):
+    board_name = "terasic_de10lite"
+
+    def __init__(self):
+        from litex_boards.targets import terasic_de10lite
+        super().__init__(soc_cls=terasic_de10lite.BaseSoC)
+
+        self.soc_kwargs.update(**{
+            "sys_clk_freq": 50e6,
+        })
 
 class ArtyA7Board(Board):
     board_name = "digilent_arty"
@@ -51,7 +61,7 @@ class ArtyA7Board(Board):
             "toolchain": "openxc7",
         })
 
-supported_boards = [TerasicDe2115Board, ArtyA7Board]
+supported_boards = [TerasicDe2115Board, TerasicDe10LiteBoard, ArtyA7Board]
 
 def main():
     description = "Demo Coreblocks SoC"

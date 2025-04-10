@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from litex.soc.integration.builder import Builder
 
 import os

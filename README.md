@@ -3,7 +3,7 @@ Zephyr on LiteX Coreblocks
 
 Zephyr on LiteX Coreblocks is a reference LiteX SoC builder for the `litex_coreblocks` platform in Zephyr.
 
-Currently it supports Digilent Arty A7 and Terasic DE2-115 development board.
+See supported boards in `make.py`, note that it's not too hard to add a new one.
 
 Zephyr patched with Coreblocks support is located [here](https://github.com/kuznia-rdzeni/zephyr)
 
@@ -12,9 +12,7 @@ Prerequisites
 
 Using Virtual Environment is recomended.
 
-Install patched LiteX with Coreblocks support from [kuznia-rdzeni/litex_](https://github.com/kuznia-rdzeni/litex_) repository.
-
-Install python package with Coreblocks sources for LiteX from [kuznia-rdzeni/pythondata-cpu-coreblocks]
+Install [LiteX](https://github.com/enjoy-digital/litex/) with full configuration to include coreblocks (NOTE: coreblocks support was recently merged into upstream LiteX, you may need to manually checkout latest commit after install instead of `2024.12` tag).
 
 Build
 -----
@@ -79,7 +77,7 @@ Note that Zephyr configuration uses `standard` variant and architecture specific
 need to be adjusted in Zephyr SoC Kconfigs and device trees.
 
 To (currently) use coreblocks with custom `CoreConfigurations` or apply some patches, it is needed to modify sources
-in `pythondata-cpu-coreblocks` and reinstall it (don't forget to increment version!).
+in `pythondata-cpu-coreblocks` and reinstall it.
 LiteX will use new sources automatically on next build. 
 It is recommended to change one of existing configurations, otherwise patching `litex.soc.cores.cpu` is also need to recognize new variant.
 
